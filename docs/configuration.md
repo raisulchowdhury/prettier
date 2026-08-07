@@ -165,6 +165,7 @@ overrides:
       semi: true
   - files:
       - "*.html"
+      - "legacy/**/*.js"
     options:
       tabWidth: 4
 ```
