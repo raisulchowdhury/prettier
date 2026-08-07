@@ -165,7 +165,6 @@ overrides:
       semi: true
   - files:
       - "*.html"
-      - "legacy/**/*.js"
     options:
       tabWidth: 4
 ```
@@ -215,6 +214,8 @@ If you’d like a JSON schema to validate your configuration, one is available h
 ## EditorConfig
 
 If a [`.editorconfig` file](https://editorconfig.org/) is in your project, Prettier will parse it and convert its properties to the corresponding Prettier configuration. This configuration will be overridden by `.prettierrc`, etc.
+
+The Prettier CLI reads `.editorconfig` automatically when one is found. `editorconfig` is not a Prettier configuration-file option; the `editorconfig` option for [`prettier.resolveConfig`](api.md#prettierresolveconfigfileurlorpath--options) applies only when resolving configuration through the Node.js API.
 
 :::note
 
