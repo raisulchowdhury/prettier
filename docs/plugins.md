@@ -69,7 +69,7 @@ Strings provided to `plugins` are ultimately passed to [`import()` expression](h
 - [`prettier-plugin-gherkin`](https://github.com/mapado/prettier-plugin-gherkin) by [**@mapado**](https://github.com/mapado)
 - [`prettier-plugin-glsl`](https://github.com/NaridaL/glsl-language-toolkit/tree/main/packages/prettier-plugin-glsl) by [**@NaridaL**](https://github.com/NaridaL)
 - [`prettier-plugin-hugo-post`](https://github.com/metcalfc/prettier-plugin-hugo-post) by [**@metcalfc**](https://github.com/metcalfc)
-- [`prettier-plugin-java`](https://github.com/jhipster/prettier-java) by [**@JHipster**](https://github.com/jhipster)
+- [`prettier-plugin-java`](https://github.com/jhipster/prettier-java) by [**@JHipster**](https://github.com/JHipster)
 - [`prettier-plugin-jinja-template`](https://github.com/davidodenwald/prettier-plugin-jinja-template) by [**@davidodenwald**](https://github.com/davidodenwald)
 - [`prettier-plugin-jte`](https://github.com/sgruendel/prettier-plugin-jte) by [**@sgruendel**](https://github.com/sgruendel)
 - [`prettier-plugin-kotlin`](https://github.com/Angry-Potato/prettier-plugin-kotlin) by [**@Angry-Potato**](https://github.com/Angry-Potato)
@@ -89,7 +89,7 @@ Strings provided to `plugins` are ultimately passed to [`import()` expression](h
 - [`prettier-plugin-solidity`](https://github.com/prettier-solidity/prettier-plugin-solidity) by [**@mattiaerre**](https://github.com/mattiaerre)
 - [`prettier-plugin-svelte`](https://github.com/sveltejs/prettier-plugin-svelte) by [**@sveltejs**](https://github.com/sveltejs)
 - [`prettier-plugin-toml`](https://github.com/un-ts/prettier/tree/master/packages/toml) by [**@JounQin**](https://github.com/JounQin) and [**@so1ve**](https://github.com/so1ve)
-- [`prettier-plugin-xquery`](https://github.com/drrataplan/prettier-plugin-xquery) by [**@DrRataplan**](https://github.com/drrataplan)
+- [`prettier-plugin-xquery`](https://github.com/drrataplan/prettier-plugin-xquery) by [**@DrRataplan**](https://github.com/DrRataplan)
 - [`prettier-plugin-yaml`](https://github.com/porada/prettier-plugin-yaml) by [**@porada**](https://github.com/porada)
 
 ## Developing Plugins
@@ -506,7 +506,15 @@ At the time of dispatching, Prettier will have annotated each AST comment node (
 
 #### Manually attaching a comment
 
-The `prettier.util.addTrailingComment`/`addLeadingComment`/`addDanglingComment` functions can be used to manually attach a comment to an AST node. An example `ownLine` function that ensures a comment does not follow a "punctuation" node (made up for demonstration purposes) might look like:
+The `prettier.util.addTrailingComment`/`addLeadingComment`/`addDanglingComment` functions can be used to manually attach a comment to an AST node.
+
+The attachment type describes the comment's relationship to that node:
+
+- A **leading** comment belongs before the node.
+- A **trailing** comment belongs after the node.
+- A **dangling** comment is neither leading nor trailing. For example, the comment in `if (a) { /* comment */ }` can be dangling on the block node.
+
+An example `ownLine` function that ensures a comment does not follow a "punctuation" node (made up for demonstration purposes) might look like:
 
 ```js
 import * as prettier from "prettier";
@@ -653,7 +661,7 @@ function getPreferredQuote(
 
 function makeString(
   rawText: string,
-  enclosingQuote: Quote,
+  enclosingQuote: string,
   unescapeUnnecessaryEscapes?: boolean,
 ): string;
 
