@@ -506,7 +506,15 @@ At the time of dispatching, Prettier will have annotated each AST comment node (
 
 #### Manually attaching a comment
 
-The `prettier.util.addTrailingComment`/`addLeadingComment`/`addDanglingComment` functions can be used to manually attach a comment to an AST node. An example `ownLine` function that ensures a comment does not follow a "punctuation" node (made up for demonstration purposes) might look like:
+The `prettier.util.addTrailingComment`/`addLeadingComment`/`addDanglingComment` functions can be used to manually attach a comment to an AST node.
+
+The attachment type describes the comment's relationship to that node:
+
+- A **leading** comment belongs before the node.
+- A **trailing** comment belongs after the node.
+- A **dangling** comment is neither leading nor trailing. For example, the comment in `if (a) { /* comment */ }` can be dangling on the block node.
+
+An example `ownLine` function that ensures a comment does not follow a "punctuation" node (made up for demonstration purposes) might look like:
 
 ```js
 import * as prettier from "prettier";
