@@ -213,6 +213,8 @@ If you’d like a JSON schema to validate your configuration, one is available h
 
 If a [`.editorconfig` file](https://editorconfig.org/) is in your project, Prettier will parse it and convert its properties to the corresponding Prettier configuration. This configuration will be overridden by `.prettierrc`, etc.
 
+The Prettier CLI reads `.editorconfig` automatically when one is found. `editorconfig` is not a Prettier configuration-file option; the `editorconfig` option for [`prettier.resolveConfig`](api.md#prettierresolveconfigfileurlorpath--options) applies only when resolving configuration through the Node.js API.
+
 :::note
 
 Unlike the EditorConfig spec, the search for `.editorconfig` file will stop on the project root and won't proceed further.
